@@ -1,6 +1,6 @@
 # opencli-plugin-fxbaogao
 
-[![Language](https://img.shields.io/badge/language-JavaScript-F7DF1E)]
+![Language](https://img.shields.io/badge/language-JavaScript-F7DF1E)
 
 [English](README.md) | [中文](README.zh-CN.md)
 
