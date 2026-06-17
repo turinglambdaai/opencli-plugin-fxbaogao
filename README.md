@@ -1,5 +1,7 @@
 # opencli-plugin-fxbaogao
 
+[![Language](https://img.shields.io/badge/language-JavaScript-F7DF1E)]
+
 [English](README.md) | [中文](README.zh-CN.md)
 
 An [opencli](https://github.com/jackwener/opencli) plugin for [fxbaogao.com](https://www.fxbaogao.com) (Found Report) -- search, browse, and read industry research reports from the command line.
