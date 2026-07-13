@@ -1,17 +1,19 @@
-# opencli-plugin-fxbaogao
-
-[English](README.md) | [中文](README.zh-CN.md)
+# OpenCLI Plugin for fxbaogao
 
 [opencli](https://github.com/jackwener/opencli) 插件，用于 [发现报告](https://www.fxbaogao.com)（fxbaogao.com）-- 在命令行搜索、浏览和阅读行业研究报告。
 
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?logo=javascript&logoColor=F7DF1E)
+
+[English](README.md) · **中文**
+
 ## 功能特点
 
-- **热门关键词** -- 查看 fxbaogao.com 上的热门搜索
-- **搜索建议** -- 关键词自动补全
-- **分类浏览** -- 按行业或机构查看报告数量分布
-- **全文搜索** -- 按关键词搜索报告，支持排序
-- **行业浏览** -- 按行业分类浏览报告
-- **报告详情** -- 提取报告的核心观点和关键数据（需要浏览器登录）
+- **热门关键词** —— 查看 fxbaogao.com 上的热门搜索
+- **搜索建议** —— 关键词自动补全
+- **分类浏览** —— 按行业或机构查看报告数量分布
+- **全文搜索** —— 按关键词搜索报告，支持排序
+- **行业浏览** —— 按行业分类浏览报告
+- **报告详情** —— 提取报告的核心观点和关键数据（需要浏览器登录）
 
 ## 安装
 
@@ -65,15 +67,15 @@ opencli fxbaogao search --keywords "AIGC" -f json
 
 插件使用 opencli 的 `cli()` 注册 API，每个命令定义在独立的文件中：
 
-- `trending.js` -- 从公开 API 获取热门关键词
-- `suggest.js` -- 提供关键词自动补全建议
-- `facet.js` -- 获取按行业或机构的报告数量分布
-- `search.js` -- 全文搜索，支持分页和排序
-- `industry.js` -- 按行业分类筛选报告
-- `report.js` -- 通过浏览器 Cookie 提取报告详情（需要登录）
+- `trending.js` —— 从公开 API 获取热门关键词
+- `suggest.js` —— 提供关键词自动补全建议
+- `facet.js` —— 获取按行业或机构的报告数量分布
+- `search.js` —— 全文搜索，支持分页和排序
+- `industry.js` —— 按行业分类筛选报告
+- `report.js` —— 通过浏览器 Cookie 提取报告详情（需要登录）
 
 大部分命令使用 `Strategy.PUBLIC`，直接调用 fxbaogao.com 的公开 API。`report` 命令使用 `Strategy.COOKIE` 配合无头浏览器访问登录后的报告内容。
 
 ## 许可证
 
-本项目目前未包含许可证文件。
+本项目暂未包含许可证文件。

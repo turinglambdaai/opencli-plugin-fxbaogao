@@ -1,19 +1,19 @@
-# opencli-plugin-fxbaogao
+# OpenCLI Plugin for fxbaogao
 
-![Language](https://img.shields.io/badge/language-JavaScript-F7DF1E)
+An [opencli](https://github.com/jackwener/opencli) plugin for [fxbaogao.com](https://www.fxbaogao.com) (Found Report) — search, browse, and read industry research reports from the command line.
 
-[English](README.md) | [中文](README.zh-CN.md)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?logo=javascript&logoColor=F7DF1E)
 
-An [opencli](https://github.com/jackwener/opencli) plugin for [fxbaogao.com](https://www.fxbaogao.com) (Found Report) -- search, browse, and read industry research reports from the command line.
+**English** · [中文](README.zh-CN.md)
 
 ## Features
 
-- **Trending keywords** -- see what's popular on fxbaogao.com
-- **Search suggestions** -- autocomplete search terms
-- **Faceted browsing** -- view report counts by industry or organization
-- **Full-text search** -- find reports by keywords with sorting options
-- **Industry browsing** -- browse reports by industry category
-- **Report details** -- extract key insights and data from individual reports (requires browser login)
+- **Trending keywords** — see what's popular on fxbaogao.com
+- **Search suggestions** — autocomplete search terms
+- **Faceted browsing** — view report counts by industry or organization
+- **Full-text search** — find reports by keywords with sorting options
+- **Industry browsing** — browse reports by industry category
+- **Report details** — extract key insights and data from individual reports (requires browser login)
 
 ## Install
 
@@ -67,12 +67,12 @@ opencli fxbaogao search --keywords "AIGC" -f json
 
 The plugin uses opencli's `cli()` registration API. Each command is defined in a separate file:
 
-- `trending.js` -- fetches popular keywords from the public API
-- `suggest.js` -- provides keyword autocomplete suggestions
-- `facet.js` -- retrieves report distribution by industry or organization
-- `search.js` -- full-text search with pagination and sorting
-- `industry.js` -- filters reports by industry category
-- `report.js` -- extracts report details using browser cookies (requires login)
+- `trending.js` — fetches popular keywords from the public API
+- `suggest.js` — provides keyword autocomplete suggestions
+- `facet.js` — retrieves report distribution by industry or organization
+- `search.js` — full-text search with pagination and sorting
+- `industry.js` — filters reports by industry category
+- `report.js` — extracts report details using browser cookies (requires login)
 
 Most commands use `Strategy.PUBLIC` and call the fxbaogao.com public API directly. The `report` command uses `Strategy.COOKIE` with a headless browser to access report content behind login.
 
