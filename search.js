@@ -37,7 +37,14 @@ cli({
     });
     if (!resp.ok) throw new CliError('HTTP_ERROR', `search failed: HTTP ${resp.status}`);
     const json = await resp.json();
-    if (json.code !== 0) throw new CliError('API_ERROR', `search API error: ${json.msg}`);
+    if (json.code !== 0) {
+      // ~2026-08 site rework: anonymous search is VIP-gated server-side
+      // (code 500「非VIP不能使用高级搜索」, same with full browser headers).
+      if (/VIP/i.test(json.msg ?? '')) {
+        throw new CliError('API_ERROR', `search unavailable: ${json.msg} — fxbaogao now requires VIP for keyword search; use "fxbaogao industry" (free, per-industry latest) instead`);
+      }
+      throw new CliError('API_ERROR', `search API error: ${json.msg}`);
+    }
 
     const data = json.data;
     const reports = Array.isArray(data?.dataList) ? data.dataList : [];

@@ -11,9 +11,16 @@
 - **热门关键词** — 查看 fxbaogao.com 上的热门搜索
 - **搜索建议** — 关键词自动补全
 - **分类浏览** — 按行业或机构查看报告数量分布
-- **全文搜索** — 按关键词搜索报告，支持排序
-- **行业浏览** — 按行业分类浏览报告
+- **全文搜索** — ⚠️ 站点 2026-08 起对匿名搜索加 VIP 墙，当前不可用（见下）
+- **行业浏览** — 按行业浏览最新研报（免登录，每行业最新 4 条）
 - **报告详情** — 提取报告的核心观点和关键数据（需要浏览器登录）
+
+> **⚠️ 关于 `search` 命令（2026-10-15 实测）**：fxbaogao.com 站点改版后，
+> 匿名搜索接口（`searchListNoAuth`）服务端直接返回「非VIP不能使用高级
+> 搜索」，带完整浏览器请求头同样被拒；行业列表页的 SSR 数据也不再包含
+> 报告列表。本插件的 `search` 命令因此暂时失效（会给出明确报错），
+> `industry` 命令已改走免登录的 SEO 接口（每行业最新 4 条）。若需要
+> 关键词搜索，需 VIP 登录态。
 
 ## 环境要求
 
@@ -44,8 +51,8 @@ opencli plugin install github:turinglambdaai/opencli-plugin-fxbaogao
 | `fxbaogao trending` | public | 否 | 热门搜索关键词 |
 | `fxbaogao suggest --word AI` | public | 否 | 搜索建议 |
 | `fxbaogao facet --type industry` | public | 否 | 行业/机构报告数量分布 |
-| `fxbaogao search --keywords "AIGC"` | public | 否 | 搜索报告 |
-| `fxbaogao industry --name "金融"` | public | 否 | 按行业浏览报告 |
+| `fxbaogao search --keywords "AIGC"` | public | 否 | 搜索报告（⚠️ VIP 墙，见上） |
+| `fxbaogao industry --name "交运设备"` | public | 否 | 按行业浏览最新研报 |
 | `fxbaogao report --docId 5364517` | cookie | 是 | 报告详情（核心观点、关键数据） |
 
 ## 使用示例
@@ -60,12 +67,11 @@ opencli fxbaogao suggest --word "新能源"
 # 行业报告分布
 opencli fxbaogao facet --type industry --limit 10
 
-# 搜索报告
+# 搜索报告（2026-08 起被 VIP 墙拦截，会报错提示）
 opencli fxbaogao search --keywords "低空经济" --limit 10
-opencli fxbaogao search --keywords "AI" --order relevant
 
-# 按行业浏览
-opencli fxbaogao industry --name "医药生物" --limit 5
+# 按行业浏览最新研报（免登录）
+opencli fxbaogao industry --name "交运设备" --limit 5
 
 # 报告详情（需在 Chrome 登录 fxbaogao.com）
 opencli fxbaogao report --docId 5364517
@@ -81,8 +87,8 @@ opencli fxbaogao search --keywords "AIGC" -f json
 - `trending.js` —— 从公开 API 获取热门关键词
 - `suggest.js` —— 提供关键词自动补全建议
 - `facet.js` —— 获取按行业或机构的报告数量分布
-- `search.js` —— 全文搜索，支持分页和排序
-- `industry.js` —— 按行业分类筛选报告
+- `search.js` —— 全文搜索（站点已加 VIP 墙，命令保留但会报明确错误）
+- `industry.js` —— 调免登录 SEO 接口，按行业返回最新研报
 - `report.js` —— 通过浏览器 Cookie 提取报告详情（需要登录）
 
 大部分命令使用 `Strategy.PUBLIC`，直接调用 fxbaogao.com 的公开 API。`report` 命令使用 `Strategy.COOKIE` 配合无头浏览器访问登录后的报告内容。
